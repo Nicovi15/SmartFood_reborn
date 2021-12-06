@@ -24,5 +24,6 @@ from CalcBesoinNutri import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('calculBesoinNutri/', views.calcBesoinNutri, name='calc'),
+    path('accounts/', include('allauth.urls')),
 
 ]
