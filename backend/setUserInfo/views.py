@@ -9,13 +9,16 @@ from .models import infosUtilisateur
 @api_view(['POST'])
 def setUserInfo(request):
 
+
+    u_id = request.data['user_id']
     a = request.data['age']
     p = float(request.data['poids'])
     t = float(request.data['taille'])
     sex = request.data['sexe']
     obj = request.data['objectif']
 
-    infosUtilisateur.objects.create(age=a,poids=p,taille=t,sexe=sex,objectif=obj)
+
+    infosUtilisateur.objects.create(user_id=u_id,age=a,poids=p,taille=t,sexe=sex,objectif=obj)
 
     response = json.dumps({
             'reponse':'insertion en bdd effectée'

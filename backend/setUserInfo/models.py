@@ -4,6 +4,7 @@ from django.db import models
 
 class infosUtilisateur(models.Model):
     objects = models.Manager()
+    user_id = models.IntegerField()
     age = models.IntegerField()
     poids = models.DecimalField(max_digits=5, decimal_places=2)
     taille = models.DecimalField(max_digits=5, decimal_places=2)

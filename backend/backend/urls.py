@@ -17,14 +17,14 @@ from django.conf.urls import url
 from django.contrib import admin
 from django.urls import path, include
 from rest_framework import routers
-from CalcBesoinNutri import views
+from CalcBesoinNutri import views as view_calc_besoin_nutri
 from setUserInfo import views as view_set_user
 
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('calculBesoinNutri/', views.calcBesoinNutri, name='calc'),
+    path('calculBesoinNutri/', view_calc_besoin_nutri.calcBesoinNutri, name='calc'),
     path('setUserInfo/', view_set_user.setUserInfo, name='setuser'),
     path('accounts/', include('allauth.urls')),
 

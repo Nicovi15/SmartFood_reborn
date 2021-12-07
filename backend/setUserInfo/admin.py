@@ -5,7 +5,7 @@ from .models import infosUtilisateur
 
 
 class infosUtilisateurAdmin(admin.ModelAdmin):
-    list_display = ('age', 'poids', 'taille', 'sexe', 'objectif')
+    list_display = ('user_id','age', 'poids', 'taille', 'sexe', 'objectif')
 
 
 # Register your models here.
