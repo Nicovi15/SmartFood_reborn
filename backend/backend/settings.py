@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
     'socialauth',
+    'uberEatsAPI'
 ]
 
 SITE_ID = 1

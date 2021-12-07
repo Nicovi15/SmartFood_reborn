@@ -10,7 +10,7 @@ from .models import infosUtilisateur
 def setUserInfo(request):
 
 
-    u_id = request.data['user_id']
+    u_id = request.user.id
     a = request.data['age']
     p = float(request.data['poids'])
     t = float(request.data['taille'])

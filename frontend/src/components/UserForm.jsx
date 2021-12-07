@@ -18,11 +18,7 @@ const UserForm = props => {
   
     return (
       <form onSubmit={submit}>
-          <input
-          type="text"
-          name="user_id"
-          onChange={e => setUser({ ...user, user_id: e.target.value })}
-        />
+        
 
         
         <input
