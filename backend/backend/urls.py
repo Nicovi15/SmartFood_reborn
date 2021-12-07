@@ -17,15 +17,20 @@ from django.conf.urls import url
 from django.contrib import admin
 from django.urls import path, include
 from rest_framework import routers
-from CalcBesoinNutri import views
+from CalcBesoinNutri import views as calc_views
+from uberEatsAPI import views as uberEats_views
+from CalcBesoinNutri import views as calc_views
 from setUserInfo import views as view_set_user
 
-
+router = routers.DefaultRouter()
+router.register(r'restaurants', uberEats_views.RestaurantView, 'restaurant')
+router.register(r'produits', uberEats_views.ProduitView, 'produit')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('calculBesoinNutri/', views.calcBesoinNutri, name='calc'),
+    path('calculBesoinNutri/', calc_views.calcBesoinNutri, name='calc'),
     path('setUserInfo/', view_set_user.setUserInfo, name='setuser'),
     path('accounts/', include('allauth.urls')),
+    path('uberEatAPI/', include(router.urls)),
 
 ]

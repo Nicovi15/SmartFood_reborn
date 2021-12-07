@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'corsheaders',
     'rest_framework',
     'CalcBesoinNutri',
+    'setUserInfo',
     'django.contrib.sites',
     'allauth',
     'allauth.account',
