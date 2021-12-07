@@ -12,6 +12,16 @@ class RestaurantView(viewsets.ModelViewSet):
     serializer_class = RestaurantSerializer
     queryset = Restaurant.objects.all()
 
+    def get_queryset(self):
+        cp = self.request.query_params.get('cp')
+
+        queryset = Restaurant.objects.filter()
+
+        if(cp != None):
+            queryset = Restaurant.objects.filter(codePostal = cp)
+
+        return queryset
+
 
 class ProduitView(viewsets.ModelViewSet):
     serializer_class = ProduitSerializer
