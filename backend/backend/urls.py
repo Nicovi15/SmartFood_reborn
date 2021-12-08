@@ -13,7 +13,7 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.conf.urls import url
+
 from django.contrib import admin
 from django.urls import path, include
 from rest_framework import routers
@@ -22,6 +22,7 @@ from CalcBesoinNutri import views as calc_views
 from uberEatsAPI import views as uberEats_views
 from setUserInfo import views as view_set_user
 from backbone import views as backbone_views
+from menuMaker import views as menuMaker_views
 
 router = routers.DefaultRouter()
 router.register(r'restaurants', uberEats_views.RestaurantView, 'restaurant')
@@ -34,4 +35,6 @@ urlpatterns = [
     path('accounts/', include('allauth.urls')),
     path('uberEatAPI/', include(router.urls)),
     path('infoAliment/', backbone_views.infoAliment, name='infoAliment'),
+    path('menuMaker/', menuMaker_views.makeMenu, name='makeMenu'),
+    path('fromRestoToMenu/', backbone_views.fromRestoToMenu, name='fromRestoToMenu')
 ]

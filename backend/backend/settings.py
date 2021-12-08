@@ -48,7 +48,8 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
     'socialauth',
-    'uberEatsAPI'
+    'uberEatsAPI',
+    'backbone',
 ]
 
 SITE_ID = 1
