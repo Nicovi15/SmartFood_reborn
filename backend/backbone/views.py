@@ -20,7 +20,7 @@ def infoAliment(request):
         "source": {"dialect": "fr", "text": aliment},
         "target": {"dialect": "en"}
     }
-    response_traduction = requests.post(translation_url, data=bodyTrad, headers={'Authorization': 'Bearer ef7af2ab-370e-4146-bcc2-802971b93248'})
+    response_traduction = requests.post(translation_url, json=bodyTrad, headers={'Authorization': 'Bearer ef7af2ab-370e-4146-bcc2-802971b93248'})
 
 
 
@@ -46,7 +46,7 @@ def infoAliment(request):
         print("Error:", response.status_code, response.text)
 
     rep = json.dumps({
-            'cal': rep["source"][0]["text"]
+            'cal': rep["items"][0]["calories"]
         })
 
     return HttpResponse(rep)

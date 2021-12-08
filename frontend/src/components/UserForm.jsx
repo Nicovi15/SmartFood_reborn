@@ -1,4 +1,4 @@
-import { PureComponent, useState } from "react"
+import {useState } from "react"
 
 const UserForm = props => {
     const [user,setUser] = useState({})
