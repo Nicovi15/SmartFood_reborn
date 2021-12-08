@@ -2,12 +2,43 @@ import UserForm from './components/UserForm';
 import logo from './logo.svg';
 import './App.css';
 import AlimentsForm from "./components/AlimentsForm";
+import axios from 'axios';
+
+// Make a request for a user with a given ID
+axios.get('http://localhost:8000/uberEatAPI/restaurants/')
+  .then(function (response) {
+    // handle success
+    console.log(response.data);
+  })
+  .catch(function (error) {
+    // handle error
+    console.log(error);
+    console.log("block error");
+  })
+  .then(function () {
+    // always executed
+  });
+
+axios.get('http://localhost:8000/uberEatAPI/restaurants/')
+  .then(function (response) {
+    // handle success
+    console.log(response.data);
+  })
+  .catch(function (error) {
+    // handle error
+    console.log(error);
+    console.log("block error");
+  })
+  .then(function () {
+    // always executed
+  });
 
 function App() {
   return (
     <div className="App">
       <UserForm/>
       <AlimentsForm/>
+        <p>res</p>
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>

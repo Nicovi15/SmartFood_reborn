@@ -21,6 +21,7 @@ from CalcBesoinNutri import views as view_calc_besoin_nutri
 from CalcBesoinNutri import views as calc_views
 from uberEatsAPI import views as uberEats_views
 from setUserInfo import views as view_set_user
+from backbone import views as backbone_views
 
 router = routers.DefaultRouter()
 router.register(r'restaurants', uberEats_views.RestaurantView, 'restaurant')
@@ -32,5 +33,5 @@ urlpatterns = [
     path('setUserInfo/', view_set_user.setUserInfo, name='setuser'),
     path('accounts/', include('allauth.urls')),
     path('uberEatAPI/', include(router.urls)),
-
+    path('infoAliment/', backbone_views.infoAliment, name='infoAliment'),
 ]
