@@ -1,13 +1,13 @@
 import UserForm from './components/UserForm';
-import ListeRestaurants from './components/ListeRestaurants';
 import logo from './logo.svg';
 import './App.css';
+import AlimentsForm from "./components/AlimentsForm";
 
 function App() {
   return (
     <div className="App">
       <UserForm/>
-      <ListeRestaurants/>
+      <AlimentsForm/>
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
@@ -19,7 +19,7 @@ function App() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Learn React
+          Learn
         </a>
       </header>
     </div>
