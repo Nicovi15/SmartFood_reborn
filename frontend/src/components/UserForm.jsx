@@ -1,68 +1,74 @@
-import {useState } from "react"
+import React from "react";
+import axios from "axios";
 
-const UserForm = props => {
-    const [user,setUser] = useState({})
-  
-    const submit = e => {
-      console.log(JSON.stringify( user ));
-      e.preventDefault()
-    /*
-      fetch('http://localhost:8000/setUserInfo/', {
-        method: 'POST',
-        body: JSON.stringify( user ),
-        headers: { 'Content-Type': 'application/json' },
-      })
-        .then(res => res.json())
-        .then(json => setUser(json.user))
+export default class UserForm extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            age: 0,
+            taille : 0,
+            poids : 0,
+            sexe : ""
+        };
+
+        this.handleChangeAge = this.handleChangeAge.bind(this);
+        this.handleChangeTaille = this.handleChangeTaille.bind(this);
+        this.handleChangeSexe = this.handleChangeSexe.bind(this);
+        this.handleChangePoids = this.handleChangePoids.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
-    */
 
-    fetch('http://localhost:8000/calDispo/', {
-      method: 'POST',
-      body: JSON.stringify( user ),
-      headers: { 'Content-Type': 'application/json' },
-    })
-      .then(res => res.json())
-      .then(json => setUser(json.user))
-      console.log(user)
-  }
+    handleChangeAge(event) {
+        this.setState({age: event.target.value});
+    }
 
+    handleChangeTaille(event) {
+        this.setState({taille: event.target.value});
+    }
 
-  
-    return (
+    handleChangePoids(event) {
+        this.setState({poids: event.target.value});
+    }
 
-      <form onSubmit={submit}>
-        
+    handleChangeSexe(event) {
+        this.setState({sexe: event.target.value});
+    }
 
-        
-        <input
-          type="text"
-          name="age"
-          onChange={e => setUser({ ...user, age: e.target.value })}
-        />
+    handleSubmit(event) {
+        var updateCal = this.props.updateCal;
+        axios.post(`http://localhost:8000/calDispo/`, {age : this.state.age, taille : this.state.taille, sexe : this.state.sexe, poids : this.state.poids})
+            .then(res => {
+                const persons = res.data;
+                updateCal(res.data['cal'])
+            })
+        event.preventDefault();
+    }
 
-        <input
-          type="text"
-          name="taille"
-          onChange={e => setUser({ ...user, taille: e.target.value })}
-        />
-
-        <input
-          type="text"
-          name="sexe"
-          onChange={e => setUser({ ...user, sexe: e.target.value })}
-        />
-        
-        <input
-          type="text"
-          name="poids"
-          onChange={e => setUser({ ...user, poids: e.target.value })}
-        />
-  
-  
-        <input type="submit" name="Sign Up" />
-      </form>
-    )
-  }
-
-  export default UserForm;
+    render() {
+        return (
+            <form onSubmit={this.handleSubmit}>
+                <label>
+                    Age :
+                    <input type="text" value={this.state.age} onChange={this.handleChangeAge} />
+                </label>
+                <label>
+                    Taille :
+                    <input type="text" value={this.state.taille} onChange={this.handleChangeTaille} />
+                </label>
+                <label>
+                    Poids :
+                    <input type="text" value={this.state.poids} onChange={this.handleChangePoids} />
+                </label>
+                <label>
+                  Sexe : 
+                    <select type="select" value={this.state.sexe} label="Multiple Select" onChange={this.handleChangeSexe}>
+                      <option value="homme">homme</option>
+                      <option value="femme">femme</option>
+                    </select>
+                </label>
+                
+                <input type="submit" value="Envoyer" />
+            </form>
+        );
+    }
+}

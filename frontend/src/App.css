@@ -36,3 +36,15 @@
     transform: rotate(360deg);
   }
 }
+
+.img_resto{
+
+  width:50px;
+  height:50px;
+
+}
+
+.img_produit{
+  width:50px;
+  height:50px;
+}

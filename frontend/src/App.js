@@ -1,9 +1,9 @@
 import UserForm from './components/UserForm';
-import logo from './logo.svg';
+
 import './App.css';
 import React, { Component } from "react";
-import AlimentsForm from "./components/AlimentsForm";
-import ComponentTest from "./components/ComponentTest";
+import AlimentFinder from "./components/AlimentFinder";
+import ListeRestaurants from "./components/ListeRestaurants";
 import axios from 'axios';
 
 /*
@@ -82,22 +82,11 @@ class App extends Component {
         return (
             <div className="App">
                 <header className="App-header">
-                    <ComponentTest updateCal={this.updateCal}/>
-                    {this.state.test &&
-                    <ComponentTest updateCal = {this.updateCal}/>}
-                    <p>{this.state.cal}</p>
-                    <img src={logo} className="App-logo" alt="logo" />
-                    <p>
-                        Edit <code>src/App.js</code> and save to reload.
-                    </p>
-                    <a
-                        className="App-link"
-                        href="https://reactjs.org"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        Learn
-                    </a>
+                  <UserForm updateCal={this.updateCal}/>
+                    <AlimentFinder updateCal={this.updateCal} actualCal={this.state.cal}/>
+                    <p>Il vous reste {Math.round(this.state.cal,2)} calories à consommer</p>
+                    <ListeRestaurants actualCal={this.state.cal} />
+
                 </header>
             </div>
     );

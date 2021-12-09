@@ -21,7 +21,7 @@ class AlimentsForm extends Component {
   handleSubmit = (event) => {
     event.preventDefault();
     axios
-      .post("http://localhost8000/infoAliment", this.state)
+      .post("http://localhost8000/infoAliment/", this.state)
       .then((response) => {
         console.log(response.data);
         const {contract} = response.data
