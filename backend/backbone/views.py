@@ -43,8 +43,13 @@ def infoAliment(request):
     else:
         print("Error:", response.status_code, response.text)
 
+    calTot = 0
+
+    for i in rep["items"]:
+        calTot += i["calories"]
+
     rep = json.dumps({
-            'cal': rep["items"][0]["calories"]
+            'cal': calTot
         })
 
     return HttpResponse(rep)
@@ -86,6 +91,6 @@ def fromRestoToMenu(request):
     response = requests.post(makeMenu_url, json=bodyMakeMenu)
     rep = json.loads(response.text)
 
-    return HttpResponse(rep)
+    return HttpResponse(json.dumps(rep))
 
 
