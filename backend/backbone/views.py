@@ -20,9 +20,7 @@ def infoAliment(request):
         "source": {"dialect": "fr", "text": aliment},
         "target": {"dialect": "en"}
     }
-    response_traduction = requests.post(translation_url, data=bodyTrad, headers={'Authorization': 'Bearer ef7af2ab-370e-4146-bcc2-802971b93248'})
-
-
+    response_traduction = requests.post(translation_url, json=bodyTrad, headers={'Authorization': 'Bearer ef7af2ab-370e-4146-bcc2-802971b93248'})
 
     if response_traduction.status_code == requests.codes.ok:
         print(response_traduction.text)
@@ -31,7 +29,7 @@ def infoAliment(request):
         print("Error:", response_traduction.status_code, response_traduction.text)
         return HttpResponse(response_traduction.text)
 
-    aliment =  rep["target"]["text"]
+    aliment = rep["target"]["text"]
 
 
     #aliment il soit en anglais
@@ -45,8 +43,54 @@ def infoAliment(request):
     else:
         print("Error:", response.status_code, response.text)
 
+    calTot = 0
+
+    for i in rep["items"]:
+        calTot += i["calories"]
+
     rep = json.dumps({
-            'cal': rep["source"][0]["text"]
+            'cal': calTot
         })
 
     return HttpResponse(rep)
+
+
+@api_view(['POST'])
+def fromRestoToMenu(request):
+
+    calories = request.data['calories']
+    numResto = request.data['restaurant']
+
+    urlAPI_uberEat = "http://localhost:8000/uberEatAPI/produits/"
+    type0 = "?type=0&restaurant=" + numResto
+    type1 = "?type=1&restaurant=" + numResto
+    type2 = "?type=2&restaurant=" + numResto
+    type3 = "?type=3&restaurant=" + numResto
+
+    response = requests.get(urlAPI_uberEat + type0)
+    plat = json.loads(response.text)
+
+    response = requests.get(urlAPI_uberEat + type1)
+    accompagnement = json.loads(response.text)
+
+    response = requests.get(urlAPI_uberEat + type2)
+    dessert = json.loads(response.text)
+
+    response = requests.get(urlAPI_uberEat + type3)
+    boisson = json.loads(response.text)
+
+    makeMenu_url = "http://localhost:8000/menuMaker/"
+    bodyMakeMenu = {
+        "cal": calories,
+        "plat": plat,
+        "accompagnement": accompagnement,
+        "dessert": dessert,
+        "boisson": boisson
+    }
+
+    response = requests.post(makeMenu_url, json=bodyMakeMenu)
+    rep = json.loads(response.text)
+
+    return HttpResponse(json.dumps(rep))
+
+

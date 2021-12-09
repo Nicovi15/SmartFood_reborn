@@ -1,28 +1,56 @@
 import { useState } from "react"
+import React, { Component } from "react";
+import axios from "axios";
 
-const AlimentsForm = props => {
-    const [data] = useState(props.data)
 
+class AlimentsForm extends Component {
+  constructor(props) {
+    super(props);
 
-    const submit = e => {
-      alert(data)
-      e.preventDefault()
-      fetch('http://localhost:8000/renseignerAliments/', {
-        method: 'GET',
-        body: JSON.stringify({ data }),
-        //body : JSON.stringify({ data }),
-        headers: { 'Content-Type': 'application/json' },
+    this.state = {
+      ticker: "",
+    };
+  }
+
+  handleTickerChange = (event) => {
+    this.setState({
+      ticker: event.target.value,
+    });
+  };
+
+  handleSubmit = (event) => {
+    event.preventDefault();
+    axios
+      .post("http://localhost8000/infoAliment", this.state)
+      .then((response) => {
+        console.log(response.data);
+        const {contract} = response.data
+        this.setState({ contract: contract });
       })
-        .then(res => res.json())
-        //.then(json => setUser(json.user))
-    }
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
+
+
+  render() {
     return (
-        <form onSubmit={submit}>
-            <input type = "text" name = "aliments"/>
-            <input type = "submit" name = "send"/>
-        </form>
-    )
+      <form onSubmit={this.handleSubmit}>
+        <div>
+          <label>Ticker </label>
+          <input
+            type="text"
+            name="ticker"
+            value={this.state.ticker}
+            onChange={this.handleTickerChange}
+          />
+          <button type="submit">Submit</button>
+        </div>
+        {this.state.contract}
+      </form>
+    );
+  }
 }
 
 export default AlimentsForm;
