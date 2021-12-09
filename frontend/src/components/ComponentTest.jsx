@@ -1,35 +1,29 @@
 import React from 'react';
 import axios from 'axios';
+import App from "../App";
 
-export default class PersonList extends React.Component {
+export default class ComponentTest extends React.Component {
 
     constructor(props) {
     super(props);
 
-    this.state = {
-        calCharged: false,
-        calDispo : 0,
-        cal : 0
-    };
+
   }
 
 
   componentDidMount() {
+      var updateCal = this.props.updateCal;
     axios.post(`http://localhost:8000/infoAliment/`, {aliment : 'pomme'})
       .then(res => {
         const persons = res.data;
-        this.setState({ cal : res.data['cal'] });
-        this.setState({ calCharged : true });
+          updateCal(res.data['cal'])
       })
   }
 
   render() {
     return (
       <ul>
-          { (this.state.calCharged) &&
-              <p>{this.state.cal}</p>
-          //this.state.persons.map(person => <li>{person.cal}</li>)
-          }
+          <li>{this.props.cal}</li>
       </ul>
     )
   }
