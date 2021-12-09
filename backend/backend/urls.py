@@ -22,6 +22,7 @@ from CalcBesoinNutri import views as calc_views
 from uberEatsAPI import views as uberEats_views
 from setUserInfo import views as view_set_user
 from backbone import views as backbone_views
+from socialauth import views as auth_views
 
 router = routers.DefaultRouter()
 router.register(r'restaurants', uberEats_views.RestaurantView, 'restaurant')
@@ -32,6 +33,8 @@ urlpatterns = [
     path('calculBesoinNutri/', view_calc_besoin_nutri.calcBesoinNutri, name='calc'),
     path('setUserInfo/', view_set_user.setUserInfo, name='setuser'),
     path('accounts/', include('allauth.urls')),
+    path('socialauth/', auth_views.socialauth, name="oauth2"),
     path('uberEatAPI/', include(router.urls)),
     path('infoAliment/', backbone_views.infoAliment, name='infoAliment'),
+    path('accounts/google/login/callback/', auth_views.google_get_access_token, name="succesLogin"),
 ]
