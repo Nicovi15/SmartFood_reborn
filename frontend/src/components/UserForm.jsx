@@ -8,7 +8,7 @@ export default class UserForm extends React.Component {
             age: 0,
             taille : 0,
             poids : 0,
-            sexe : ""
+            sexe : "homme"
         };
 
         this.handleChangeAge = this.handleChangeAge.bind(this);
