@@ -46,28 +46,41 @@ export default class UserForm extends React.Component {
 
     render() {
         return (
-            <form onSubmit={this.handleSubmit}>
-                <label>
-                    Age :
-                    <input type="text" value={this.state.age} onChange={this.handleChangeAge} />
-                </label>
-                <label>
-                    Taille :
-                    <input type="text" value={this.state.taille} onChange={this.handleChangeTaille} />
-                </label>
-                <label>
-                    Poids :
-                    <input type="text" value={this.state.poids} onChange={this.handleChangePoids} />
-                </label>
-                <label>
-                  Sexe : 
-                    <select type="select" value={this.state.sexe} label="Multiple Select" onChange={this.handleChangeSexe}>
-                      <option value="homme">homme</option>
-                      <option value="femme">femme</option>
-                    </select>
-                </label>
-                
-                <input type="submit" value="Envoyer" />
+            <form style={{paddingBottom: "50px"}} onSubmit={this.handleSubmit}>
+                <ul style={{listStyle: "none",paddingLeft: "0"}}>
+                    <li style={{marginBottom: "10px"}}>
+                        <label>Renseignez vos informations</label>
+                    </li>
+                    <li>
+                        <label>
+                            Age :
+                            <input style={{marginLeft: "10px"}} type="text" value={this.state.age} onChange={this.handleChangeAge} />
+                        </label>
+                    </li>
+                    <li>
+                        <label>
+                            Taille :
+                            <input style={{marginLeft: "10px"}} type="text" value={this.state.taille} onChange={this.handleChangeTaille} />
+                        </label>
+                    </li>
+                    <li>
+                        <label>
+                            Poids :
+                            <input style={{marginLeft: "10px"}} type="text" value={this.state.poids} onChange={this.handleChangePoids} />
+                        </label>
+                    </li>
+                    <li style={{float: "left",width: "100%"}}>
+                        <label>
+                          Sexe :
+                            <select style={{marginLeft: "10px"}} type="select" value={this.state.sexe} label="Multiple Select" onChange={this.handleChangeSexe}>
+                              <option value="homme">homme</option>
+                              <option value="femme">femme</option>
+                            </select>
+                        </label>
+                    </li>
+                </ul>
+                <input style={{borderRadius: "15px",backgroundColor: "#61dafb",color: "white",padding: "5px",paddingLeft: "20px",paddingRight: "20px"}} type="submit" value="Envoyer" />
+
             </form>
         );
     }

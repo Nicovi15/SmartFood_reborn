@@ -51,6 +51,7 @@ class ListeRestaurants extends Component {
     return (
 
       <>
+        <p>Renseignez le code postal des restaurants</p>
         <input
         type="text"
         placeholder="code postal"
@@ -72,7 +73,7 @@ class ListeRestaurants extends Component {
       
                 <td > <img class="img_resto" src={element.logo} alt={element.nom}/> </td>
                 <td> {element.nom} </td>
-                <td><button onClick={(e) => this.handleClick(e, element.id)} href="google.com"> Commandez dans ce restaurant </button></td>
+                <td><button onClick={(e) => this.handleClick(e, element.id)} style={{borderRadius: "15px",backgroundColor: "#61dafb",color: "white",padding: "5px",paddingLeft: "20px",paddingRight: "20px"}} href="google.com"> Commandez dans ce restaurant </button></td>
 
               </tr>
               </tbody>
@@ -80,12 +81,13 @@ class ListeRestaurants extends Component {
           ) 
        })
       } </div>
+
           
       }
       
       {this.state.produitsLoaded &&
 
-              <div>{
+              <div><h2>Menu</h2>{
                 this.state.listeProduits.map((element, i) => {     
                   console.log(element); 
                   // Affichage
@@ -95,7 +97,7 @@ class ListeRestaurants extends Component {
                       <tr>
                         <td> <img class="img_produit" src={element.image} alt={element.nom}/> </td>
                         <td> {element.nom} </td>
-                        <td> {element.cal} </td>
+                        <td> ({element.cal} kcal) </td>
         
                       </tr>
                       </tbody>

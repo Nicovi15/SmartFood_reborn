@@ -82,9 +82,15 @@ class App extends Component {
         return (
             <div className="App">
                 <header className="App-header">
+                  <div style={{paddingBottom: "50px"}}>
+                    <h1 style={{marginBottom: "0",marginTop: "0",fontSize: "75px"}}>
+                        SmartFood
+                    </h1>
+                    <div style={{fontFamily: "Courier New",fontSize: "20px"}}>Ne consommez plus fastfood, mangez smartfood</div>
+                  </div>
                   <UserForm updateCal={this.updateCal}/>
                     <AlimentFinder updateCal={this.updateCal} actualCal={this.state.cal}/>
-                    <p>Il vous reste {Math.round(this.state.cal,2)} calories à consommer</p>
+                    <p style={{marginTop: "0",marginBottom: "60px",fontSize: "25px"}}>Il vous reste {Math.round(this.state.cal,2)} calories à consommer</p>
                     <ListeRestaurants actualCal={this.state.cal} />
 
                 </header>
