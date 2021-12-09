@@ -56,6 +56,39 @@ def infoAliment(request):
 
 
 @api_view(['POST'])
+def getCalDispo(request):
+
+    sexe = request.data['sexe']
+    age = request.data['age']
+    taille = request.data['taille']
+    poids = request.data['poids']
+
+    body = {
+        "sexe": sexe,
+        "age": age,
+        "taille" : taille,
+        "poids" : poids
+    }
+
+    urlResto = "http://localhost:8000/calculBesoinNutri/"
+    response = requests.post(urlResto, data=body)
+    rep = json.loads(response.text)
+
+    return HttpResponse(json.dumps(rep))
+
+
+@api_view(['POST'])
+def getListeResto(request):
+
+    codePostal = request.data['codePostal']
+    urlResto = "http://localhost:8000/uberEatAPI/restaurants/?cp="
+    response = requests.get(urlResto + codePostal)
+    rep = json.loads(response.text)
+
+    return HttpResponse(json.dumps(rep))
+
+
+@api_view(['POST'])
 def fromRestoToMenu(request):
 
     calories = request.data['calories']

@@ -36,5 +36,7 @@ urlpatterns = [
     path('uberEatAPI/', include(router.urls)),
     path('infoAliment/', backbone_views.infoAliment, name='infoAliment'),
     path('menuMaker/', menuMaker_views.makeMenu, name='makeMenu'),
-    path('fromRestoToMenu/', backbone_views.fromRestoToMenu, name='fromRestoToMenu')
+    path('fromRestoToMenu/', backbone_views.fromRestoToMenu, name='fromRestoToMenu'),
+    path('listeResto/', backbone_views.getListeResto, name='listeResto'),
+    path('calDispo/', backbone_views.getCalDispo, name='calDispo'),
 ]
