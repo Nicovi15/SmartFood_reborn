@@ -32,12 +32,18 @@ export default class AlimentFinder extends React.Component {
 
     render() {
         return (
-            <form onSubmit={this.handleSubmit}>
-                <label>
-                    Aliment :
-                    <input type="text" value={this.state.aliment} onChange={this.handleChangeAliment} />
-                </label>
-                <input type="submit" value="Valider" />
+            <form style={{height: "150px"}} onSubmit={this.handleSubmit}>
+                <ul style={{listStyle: "none",paddingLeft: "0"}}>
+                    <li>
+                        <label>
+                            Qu'avez vous mangé aujourd'hui ?
+                            <br/><input type="text" value={this.state.aliment} onChange={this.handleChangeAliment} />
+                        </label>
+                    </li>
+                    <li>
+                        <input style={{borderRadius: "15px",backgroundColor: "#61dafb",color: "white",padding: "5px",paddingLeft: "20px",paddingRight: "20px"}} type="submit" value="Valider" />
+                    </li>
+                </ul>
             </form>
         );
     }
