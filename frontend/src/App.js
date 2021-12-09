@@ -1,28 +1,13 @@
 import UserForm from './components/UserForm';
 import logo from './logo.svg';
 import './App.css';
-import AlimentsForm from "./components/AlimentsForm";
 import axios from 'axios';
-
-// Make a request for a user with a given ID
-axios.get('http://localhost:8000/uberEatAPI/restaurants/')
-  .then(function (response) {
-    // handle success
-    console.log(response.data);
-  })
-  .catch(function (error) {
-    // handle error
-    console.log(error);
-    console.log("block error");
-  })
-  .then(function () {
-    // always executed
-  });
+import ListeRestaurants from './components/ListeRestaurants';
 
 axios.get('http://localhost:8000/uberEatAPI/restaurants/')
   .then(function (response) {
     // handle success
-    console.log(response.data);
+    //console.log(response.data);
   })
   .catch(function (error) {
     // handle error
@@ -37,10 +22,11 @@ function App() {
   return (
     <div className="App">
       <UserForm/>
-      <AlimentsForm/>
-        <p>res</p>
+        <ListeRestaurants/>
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
+        <a href="http://localhost:8000/accounts/google/login">lien</a>
+       
         <p>
           Edit <code>src/App.js</code> and save to reload.
         </p>
