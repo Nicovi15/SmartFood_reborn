@@ -38,8 +38,6 @@ function App() {
   return (
     <div className="App">
       <UserForm/>
-      <ComponentTest/>
-        <p>res</p>
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
