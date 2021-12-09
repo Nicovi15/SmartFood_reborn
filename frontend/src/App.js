@@ -2,6 +2,7 @@ import UserForm from './components/UserForm';
 import logo from './logo.svg';
 import './App.css';
 import AlimentsForm from "./components/AlimentsForm";
+import ComponentTest from "./components/ComponentTest";
 import axios from 'axios';
 
 // Make a request for a user with a given ID
@@ -37,7 +38,7 @@ function App() {
   return (
     <div className="App">
       <UserForm/>
-      <AlimentsForm/>
+      <ComponentTest/>
         <p>res</p>
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
